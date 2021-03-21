@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery lesson</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>NOTICE!!!!</h1>
+    <h2>If you're a student of this school, please fill the form below.</h2>
+    <h3>Thank you</h3>
+    <br>
+    <h4>Who do you want for the academic section?</h4>
+    <form action="">
+        <select name="choose" id="">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <p>
+            <input type="radio" name="person" id="" value="teacher">Teacher</input>
+            <input type="radio" name="person" id="" value="principal">Principal</input>
+            <input type="radio" name="person" id="" value="classmate">Classmate</input>
+        <p>
+            <input type="checkbox" name="" id="" value="friendly">Friendly</input>    
+            <input type="checkbox" name="" id="" value="wise">Wise</input>    
+            <input type="checkbox" name="" id="" value="honest">Honest</input>   
+            
+
+   
+    </form>
+
+    <p>
+        I want a <span id="featureSpan"></span>
+        <span id="genderSpan"></span>
+        <span id="personSpan">Person</span>
+
+        <script>
+            // To handle the select box
+            $("select[name='choose']").change(function() {
+                $('#genderSpan').html($(this).val());
+            });
+
+            //To handle radio buttons
+            $("input:radio[name='person']").change(function() {
+                if($(this).prop('checked')) {
+                    $('#personSpan').html($(this).val());
+                }
+            });
+            
+            var allChecked = [];
+
+            $('input:checkbox').change(function() {
+                var value = $(this).val();
+                if ($(this).prop('checked')){
+                    allChecked.push(value);
+                }
+                else{
+                    var index = allChecked.indexOf(value);
+                    if (index != -1)
+                     allChecked.splice(index, 1); 
+                }
+            $('#featureSpan').html('');
+            for (var i = 0; i < allChecked.length; i++) {
+                $('#featureSpan').append(allChecked[i]);
+                if(i < allChecked.length - 1)
+                  $('#featureSpan').append(', ');
+                else
+                  $('#featureSpan').append(' ');
+            }
+            });
+           
+
+        </script>
+      <P class="demo"></P>
+      <button type="button" onclick='alert("Form Submitted") .innerHTML = "Submitted"'>Submit</button>
+</body>
+</html>
